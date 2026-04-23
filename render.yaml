@@ -1,11 +1,10 @@
 services:
   - type: web
     name: linebot-english-learning
-    runtime: java
+    runtime: docker
     plan: free
-    autoDeploy: true
-    buildCommand: mvn -DskipTests clean package
-    startCommand: java -jar target/linebot-english-learning-0.0.1-SNAPSHOT.jar
+    autoDeployTrigger: commit
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: AI_PROVIDER
         value: gemini
@@ -19,3 +18,9 @@ services:
         value: 3600
       - key: LINE_SIGNATURE_VALIDATION_ENABLED
         value: true
+      - key: LINE_CHANNEL_SECRET
+        sync: false
+      - key: LINE_CHANNEL_ACCESS_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
