@@ -1,0 +1,75 @@
+{
+  "grammar_units": [
+    {
+      "week": 1,
+      "unit": 1,
+      "title": "Present Simple",
+      "explanation_zh": "現在簡單式用於日常習慣、固定事實。主詞為 he/she/it 時，動詞通常加 s。",
+      "key_points": [
+        "I/You/We/They + 動詞原形",
+        "He/She/It + 動詞s",
+        "否定句使用 do/does not + 動詞原形"
+      ],
+      "examples": [
+        {
+          "en": "I study English every day.",
+          "zh": "我每天讀英文。"
+        },
+        {
+          "en": "She works at a bank.",
+          "zh": "她在銀行工作。"
+        },
+        {
+          "en": "He doesn't drink coffee.",
+          "zh": "他不喝咖啡。"
+        }
+      ],
+      "practice": [
+        {
+          "q": "Fill in: He ___ to school by bus.",
+          "a": "goes"
+        },
+        {
+          "q": "Make negative: They play basketball.",
+          "a": "They do not play basketball."
+        }
+      ]
+    },
+    {
+      "week": 1,
+      "unit": 2,
+      "title": "Be Verb (am/is/are)",
+      "explanation_zh": "be 動詞用來表達身份、狀態與位置。I 用 am，he/she/it 用 is，you/we/they 用 are。",
+      "key_points": [
+        "I am",
+        "He/She/It is",
+        "You/We/They are",
+        "否定句在 be 動詞後加 not"
+      ],
+      "examples": [
+        {
+          "en": "I am a student.",
+          "zh": "我是學生。"
+        },
+        {
+          "en": "They are in the classroom.",
+          "zh": "他們在教室裡。"
+        },
+        {
+          "en": "She is not busy.",
+          "zh": "她不忙。"
+        }
+      ],
+      "practice": [
+        {
+          "q": "Fill in: We ___ happy today.",
+          "a": "are"
+        },
+        {
+          "q": "Make question: He is a teacher.",
+          "a": "Is he a teacher?"
+        }
+      ]
+    }
+  ]
+}

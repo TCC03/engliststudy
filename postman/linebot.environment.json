@@ -1,0 +1,15 @@
+{
+  "id": "f31f0a6b-05a1-4f86-8b93-4e2b877d5f11",
+  "name": "LINE Bot Local",
+  "values": [
+    {
+      "key": "channel_access_token",
+      "value": "",
+      "type": "secret",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2026-04-15T00:00:00.000Z",
+  "_postman_exported_using": "ChatGPT"
+}

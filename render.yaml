@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: linebot-english-learning
+    runtime: java
+    plan: free
+    autoDeploy: true
+    buildCommand: mvn -DskipTests clean package
+    startCommand: java -jar target/linebot-english-learning-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: AI_PROVIDER
+        value: gemini
+      - key: DEV_ASSISTANT
+        value: gpt
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: VOCABULARY_SYNC_ON_STARTUP
+        value: true
+      - key: SESSION_TTL_SECONDS
+        value: 3600
+      - key: LINE_SIGNATURE_VALIDATION_ENABLED
+        value: true

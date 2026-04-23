@@ -1,0 +1,63 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 810
+  },
+  "selected": true,
+  "chatBarText": "English Menu",
+  "name": "English Learning Menu",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 625,
+        "height": 810
+      },
+      "action": {
+        "type": "postback",
+        "label": "開始測驗",
+        "data": "action=start_quiz"
+      }
+    },
+    {
+      "bounds": {
+        "x": 625,
+        "y": 0,
+        "width": 625,
+        "height": 810
+      },
+      "action": {
+        "type": "postback",
+        "label": "今日單字",
+        "data": "action=daily_vocabulary"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1250,
+        "y": 0,
+        "width": 625,
+        "height": 810
+      },
+      "action": {
+        "type": "postback",
+        "label": "我的字庫",
+        "data": "action=my_vocabulary"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1875,
+        "y": 0,
+        "width": 625,
+        "height": 810
+      },
+      "action": {
+        "type": "message",
+        "label": "幫助",
+        "text": "help"
+      }
+    }
+  ]
+}

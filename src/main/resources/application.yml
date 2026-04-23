@@ -1,0 +1,34 @@
+server:
+  port: ${PORT:8080}
+
+app:
+  line:
+    channel-secret: ${LINE_CHANNEL_SECRET:}
+    channel-access-token: ${LINE_CHANNEL_ACCESS_TOKEN:}
+    signature-validation-enabled: ${LINE_SIGNATURE_VALIDATION_ENABLED:true}
+  ai:
+    provider: ${AI_PROVIDER:gemini}
+    dev-assistant: ${DEV_ASSISTANT:gpt}
+    gemini-api-key: ${GEMINI_API_KEY:}
+    gemini-model: ${GEMINI_MODEL:gemini-1.5-flash}
+  data:
+    vocabulary-file: data/vocabulary_seed.csv
+    vocabulary-api-url: ${VOCABULARY_API_URL:https://raw.githubusercontent.com/zenkarsha/words7000/main/words.json}
+    vocabulary-sync-on-startup: ${VOCABULARY_SYNC_ON_STARTUP:true}
+    quiz-file: data/quiz_seed.csv
+    grammar-file: data/grammar_seed.json
+    roleplay-file: data/roleplay_seed.json
+  session:
+    max-quiz-questions: 5
+    ttl-seconds: ${SESSION_TTL_SECONDS:3600}
+
+spring:
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+
+logging:
+  level:
+    root: INFO

@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": 1,
+      "title": "At a Restaurant",
+      "level": "A2",
+      "context_zh": "使用者在餐廳點餐，練習詢問、點菜與確認。",
+      "target_vocabulary": [
+        "restaurant",
+        "menu",
+        "order",
+        "water",
+        "please"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Greet the customer and ask what they want.",
+          "sample_ai_reply": "Welcome! What would you like to order?"
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Ask if the user wants a drink.",
+          "sample_ai_reply": "Would you like something to drink?"
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Confirm the order politely.",
+          "sample_ai_reply": "Great. One chicken set and water. Is that correct?"
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Close the conversation.",
+          "sample_ai_reply": "Perfect. Your meal will be ready soon. Thank you!"
+        }
+      ]
+    }
+  ]
+}

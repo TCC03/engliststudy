@@ -1,0 +1,13 @@
+text,language_code,voice_name,speaking_rate,use_case
+Hello! Nice to meet you.,en-US,en-US-Neural2-A,1.0,greeting
+Goodbye! See you tomorrow.,en-US,en-US-Neural2-A,1.0,greeting
+Please open your book.,en-US,en-US-Neural2-A,0.9,classroom
+Can I have some water?,en-US,en-US-Neural2-A,0.9,daily
+I study English every day.,en-US,en-US-Neural2-A,0.9,grammar
+She works at a bank.,en-US,en-US-Neural2-A,0.9,grammar
+Turn left at the corner.,en-US,en-US-Neural2-A,0.85,direction
+Go straight for two blocks.,en-US,en-US-Neural2-A,0.85,direction
+Can I see the menu?,en-US,en-US-Neural2-A,0.9,restaurant
+What would you like to order?,en-US,en-US-Neural2-A,0.9,restaurant
+I am a student.,en-US,en-US-Neural2-A,0.9,introduction
+Where are you from?,en-US,en-US-Neural2-A,0.9,introduction

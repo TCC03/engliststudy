@@ -1,0 +1,47 @@
+{
+  "info": {
+    "_postman_id": "7f8a7d4e-0f9a-4a27-9cc6-4a0be1f7c001",
+    "name": "LINE Rich Menu - Create",
+    "description": "Create a LINE Rich Menu using the Messaging API. Import this collection into Postman, set channel_access_token in the environment, and send the request to create the menu.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Rich Menu",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{channel_access_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.line.me/v2/bot/richmenu",
+          "protocol": "https",
+          "host": [
+            "api",
+            "line",
+            "me"
+          ],
+          "path": [
+            "v2",
+            "bot",
+            "richmenu"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"size\": {\n    \"width\": 2500,\n    \"height\": 810\n  },\n  \"selected\": true,\n  \"chatBarText\": \"English Menu\",\n  \"name\": \"English Learning Menu\",\n  \"areas\": [\n    {\n      \"bounds\": {\n        \"x\": 0,\n        \"y\": 0,\n        \"width\": 625,\n        \"height\": 810\n      },\n      \"action\": {\n        \"type\": \"postback\",\n        \"label\": \"開始測驗\",\n        \"data\": \"action=start_quiz\"\n      }\n    },\n    {\n      \"bounds\": {\n        \"x\": 625,\n        \"y\": 0,\n        \"width\": 625,\n        \"height\": 810\n      },\n      \"action\": {\n        \"type\": \"postback\",\n        \"label\": \"今日單字\",\n        \"data\": \"action=daily_vocabulary\"\n      }\n    },\n    {\n      \"bounds\": {\n        \"x\": 1250,\n        \"y\": 0,\n        \"width\": 625,\n        \"height\": 810\n      },\n      \"action\": {\n        \"type\": \"postback\",\n        \"label\": \"我的字庫\",\n        \"data\": \"action=my_vocabulary\"\n      }\n    },\n    {\n      \"bounds\": {\n        \"x\": 1875,\n        \"y\": 0,\n        \"width\": 625,\n        \"height\": 810\n      },\n      \"action\": {\n        \"type\": \"message\",\n        \"label\": \"幫助\",\n        \"text\": \"help\"\n      }\n    }\n  ]\n}"
+        }
+      },
+      "response": []
+    }
+  ]
+}
