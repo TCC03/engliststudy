@@ -6,6 +6,7 @@ import com.sideproject.linebot.service.LineMessagingService;
 import com.sideproject.linebot.service.LineSignatureService;
 import com.sideproject.linebot.service.MessageRouterService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -33,6 +34,11 @@ public class LineWebhookController {
         this.messageRouterService = messageRouterService;
         this.lineSignatureService = lineSignatureService;
         this.lineMessagingService = lineMessagingService;
+    }
+
+    @GetMapping("/health")
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("OK");
     }
 
     @PostMapping("/webhook")
