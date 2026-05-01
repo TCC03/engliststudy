@@ -13,6 +13,8 @@ public class UserSessionState {
     private int roleplayTurn;
     private List<String> playedPronunciationWords = new ArrayList<>();
     private RoleplayScenario currentRoleplayScenario;  // Store current roleplay scenario
+    private GrammarUnit currentGrammarUnit;  // Store current grammar unit
+    private int grammarPracticeIndex = 0;  // Practice question index
 
     public UserMode getMode() {
         return mode;
@@ -86,6 +88,23 @@ public class UserSessionState {
 
     public void setCurrentRoleplayScenario(RoleplayScenario currentRoleplayScenario) {
         this.currentRoleplayScenario = currentRoleplayScenario;
+    }
+
+    public GrammarUnit getCurrentGrammarUnit() {
+        return currentGrammarUnit;
+    }
+
+    public void setCurrentGrammarUnit(GrammarUnit currentGrammarUnit) {
+        this.currentGrammarUnit = currentGrammarUnit;
+        this.grammarPracticeIndex = 0;  // Reset practice index when switching units
+    }
+
+    public int getGrammarPracticeIndex() {
+        return grammarPracticeIndex;
+    }
+
+    public void setGrammarPracticeIndex(int grammarPracticeIndex) {
+        this.grammarPracticeIndex = grammarPracticeIndex;
     }
 
     public void clearQuiz() {

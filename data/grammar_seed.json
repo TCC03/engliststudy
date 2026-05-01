@@ -22,6 +22,10 @@
         {
           "en": "He doesn't drink coffee.",
           "zh": "他不喝咖啡。"
+        },
+        {
+          "en": "Do you like pizza?",
+          "zh": "你喜歡披薩嗎？"
         }
       ],
       "practice": [
@@ -32,6 +36,10 @@
         {
           "q": "Make negative: They play basketball.",
           "a": "They do not play basketball."
+        },
+        {
+          "q": "Make question: She likes ice cream.",
+          "a": "Does she like ice cream?"
         }
       ]
     },
@@ -58,6 +66,10 @@
         {
           "en": "She is not busy.",
           "zh": "她不忙。"
+        },
+        {
+          "en": "Are you ready?",
+          "zh": "你準備好了嗎？"
         }
       ],
       "practice": [
@@ -68,6 +80,186 @@
         {
           "q": "Make question: He is a teacher.",
           "a": "Is he a teacher?"
+        },
+        {
+          "q": "Fill in: You ___ very smart.",
+          "a": "are"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "unit": 1,
+      "title": "Present Continuous",
+      "explanation_zh": "進行式表示現在正在進行的動作。格式：am/is/are + -ing 動詞。",
+      "key_points": [
+        "I am + -ing",
+        "He/She/It is + -ing",
+        "You/We/They are + -ing",
+        "現在正在進行的動作"
+      ],
+      "examples": [
+        {
+          "en": "I am reading a book right now.",
+          "zh": "我現在正在讀一本書。"
+        },
+        {
+          "en": "She is cooking dinner.",
+          "zh": "她正在做晚餐。"
+        },
+        {
+          "en": "They are not playing football.",
+          "zh": "他們沒有在踢足球。"
+        },
+        {
+          "en": "What are you doing?",
+          "zh": "你在做什麼？"
+        }
+      ],
+      "practice": [
+        {
+          "q": "Fill in: He is ___ (watch) a movie.",
+          "a": "watching"
+        },
+        {
+          "q": "Make negative: I am studying.",
+          "a": "I am not studying."
+        },
+        {
+          "q": "Make question: She is sleeping.",
+          "a": "Is she sleeping?"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "unit": 2,
+      "title": "Past Simple",
+      "explanation_zh": "過去簡單式表示過去完成的動作。規則動詞加 -ed，不規則動詞有特殊形式。",
+      "key_points": [
+        "規則動詞：-ed",
+        "不規則動詞：went, saw, did等",
+        "否定：did not + 動詞原形",
+        "疑問句：Did + 主詞 + 動詞原形"
+      ],
+      "examples": [
+        {
+          "en": "I went to the beach yesterday.",
+          "zh": "我昨天去了海邊。"
+        },
+        {
+          "en": "She didn't eat breakfast.",
+          "zh": "她沒有吃早餐。"
+        },
+        {
+          "en": "Did you see him last week?",
+          "zh": "你上週見過他嗎？"
+        },
+        {
+          "en": "We played football last Sunday.",
+          "zh": "上週日我們踢了足球。"
+        }
+      ],
+      "practice": [
+        {
+          "q": "Fill in: I ___ (go) to Paris last year.",
+          "a": "went"
+        },
+        {
+          "q": "Make negative: She watched TV.",
+          "a": "She did not watch TV."
+        },
+        {
+          "q": "Make question: He played guitar.",
+          "a": "Did he play guitar?"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "unit": 1,
+      "title": "Future Simple with 'will'",
+      "explanation_zh": "用 will 表示將來的動作或事件。格式：will + 動詞原形。",
+      "key_points": [
+        "Will + 動詞原形",
+        "用於預測、決定或承諾",
+        "否定：will not (won't)",
+        "疑問句：Will + 主詞 + 動詞原形"
+      ],
+      "examples": [
+        {
+          "en": "I will visit my friends tomorrow.",
+          "zh": "我明天將拜訪我的朋友。"
+        },
+        {
+          "en": "She will not be late.",
+          "zh": "她不會遲到。"
+        },
+        {
+          "en": "Will you help me?",
+          "zh": "你會幫我嗎？"
+        },
+        {
+          "en": "It will be sunny tomorrow.",
+          "zh": "明天會很晴朗。"
+        }
+      ],
+      "practice": [
+        {
+          "q": "Fill in: They ___ (arrive) at 5 PM.",
+          "a": "will arrive"
+        },
+        {
+          "q": "Make negative: I will call you.",
+          "a": "I will not call you."
+        },
+        {
+          "q": "Make question: She will finish her homework.",
+          "a": "Will she finish her homework?"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "unit": 2,
+      "title": "Can / Could",
+      "explanation_zh": "情態動詞 can 表示能力、許可或可能性。could 是過去式或更禮貌的表達。",
+      "key_points": [
+        "Can 表示現在能力",
+        "Could 表示過去能力或禮貌請求",
+        "Can + 動詞原形",
+        "Could + 動詞原形"
+      ],
+      "examples": [
+        {
+          "en": "I can speak English.",
+          "zh": "我會說英文。"
+        },
+        {
+          "en": "He could swim when he was young.",
+          "zh": "他年輕時會游泳。"
+        },
+        {
+          "en": "Can I help you?",
+          "zh": "我能幫你嗎？"
+        },
+        {
+          "en": "Could you pass the salt?",
+          "zh": "你能遞一下鹽嗎？"
+        }
+      ],
+      "practice": [
+        {
+          "q": "Fill in: She ___ play the piano.",
+          "a": "can"
+        },
+        {
+          "q": "Fill in: When he was a child, he ___ run very fast.",
+          "a": "could"
+        },
+        {
+          "q": "Make negative: I can swim.",
+          "a": "I cannot (can't) swim."
         }
       ]
     }

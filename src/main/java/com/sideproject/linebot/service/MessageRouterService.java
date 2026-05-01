@@ -3,6 +3,7 @@ package com.sideproject.linebot.service;
 import com.sideproject.linebot.config.AppRuntimeProperties;
 import com.sideproject.linebot.model.AiChatResult;
 import com.sideproject.linebot.model.AiCorrectionResult;
+import com.sideproject.linebot.model.GrammarUnit;
 import com.sideproject.linebot.model.QuizQuestion;
 import com.sideproject.linebot.model.RoleplayScenario;
 import com.sideproject.linebot.model.UserMode;
@@ -77,6 +78,18 @@ public class MessageRouterService {
                 return;
             }
 
+            if (state.getMode() == UserMode.GRAMMAR_MODE) {
+                if ("結束文法".equals(normalized)) {
+                    state.setMode(UserMode.NORMAL);
+                    state.setCurrentGrammarUnit(null);
+                    replyOrPushText(safeUserId, replyToken, "已結束文法練習，回到一般指令模式。", messagingService);
+                    return;
+                }
+                String reply = handleGrammarPractice(state, normalized);
+                replyOrPushText(safeUserId, replyToken, reply, messagingService);
+                return;
+            }
+
             if ("今日單字".equals(normalized)) {
                 Map<String, Object> flexCard = vocabularyService.getDailyVocabularyFlex();
                 if (flexCard != null) {
@@ -90,7 +103,7 @@ public class MessageRouterService {
             }
 
             if ("文法".equals(normalized)) {
-                replyOrPushText(safeUserId, replyToken, grammarService.getRandomGrammarReply(), messagingService);
+                startGrammarLesson(state, replyToken, messagingService);
                 return;
             }
 
@@ -334,5 +347,45 @@ public class MessageRouterService {
 
         state.setRoleplayTurn(nextTurn);
         return "很棒，繼續！\n" + scenario.turns().get(nextTurn).sampleAiReply();
+    }
+
+    private void startGrammarLesson(UserSessionState state, String replyToken, LineMessagingService messagingService) {
+        GrammarUnit unit = grammarService.startRandomGrammarLesson();
+        if (unit == null) {
+            messagingService.replyText(replyToken, "目前沒有文法資料，請先準備 data/grammar_seed.json");
+            return;
+        }
+
+        state.setMode(UserMode.GRAMMAR_MODE);
+        state.setCurrentGrammarUnit(unit);
+        state.setGrammarPracticeIndex(0);
+        
+        String lessonMessage = grammarService.generateGrammarLessonMessage(unit);
+        messagingService.replyText(replyToken, lessonMessage);
+    }
+
+    private String handleGrammarPractice(UserSessionState state, String userAnswer) {
+        GrammarUnit unit = state.getCurrentGrammarUnit();
+        if (unit == null) {
+            state.setMode(UserMode.NORMAL);
+            return "文法單元丟失，已回到一般模式。";
+        }
+
+        int practiceIndex = state.getGrammarPracticeIndex();
+        String feedback = grammarService.checkGrammarAnswer(unit, practiceIndex, userAnswer);
+        
+        // Check if we need to move to next practice question
+        String nextPractice = grammarService.getNextPractice(unit, practiceIndex);
+        if (nextPractice != null) {
+            state.setGrammarPracticeIndex(practiceIndex + 1);
+        } else {
+            // All practice questions completed
+            if (practiceIndex + 1 >= unit.practice().size()) {
+                state.setMode(UserMode.NORMAL);
+                state.setCurrentGrammarUnit(null);
+            }
+        }
+
+        return feedback;
     }
 }
