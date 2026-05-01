@@ -62,6 +62,30 @@ public class VocabularyService {
                 + "Level: " + item.level();
     }
 
+    /**
+     * 獲取隨機詞彙列表用於對話生成
+     * @param count 所需詞彙數量
+     * @return 隨機選中的詞彙列表
+     */
+    public List<String> getRandomVocabularyForDialogue(int count) {
+        List<VocabularyItem> vocabularyItems = loadVocabularyItemsFromFile();
+        if (vocabularyItems.isEmpty()) {
+            return List.of();
+        }
+
+        List<String> result = new ArrayList<>();
+        int targetCount = Math.min(count, vocabularyItems.size());
+        for (int i = 0; i < targetCount; i++) {
+            VocabularyItem item = vocabularyItems.get(random.nextInt(vocabularyItems.size()));
+            if (!result.contains(item.word())) {
+                result.add(item.word());
+            } else {
+                i--; // Retry if duplicate
+            }
+        }
+        return result;
+    }
+
     public Map<String, Object> getDailyVocabularyFlex() {
         List<VocabularyItem> vocabularyItems = loadVocabularyItemsFromFile();
         if (vocabularyItems.isEmpty()) {

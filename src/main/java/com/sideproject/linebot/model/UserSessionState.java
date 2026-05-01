@@ -12,6 +12,7 @@ public class UserSessionState {
     private int quizCorrect;
     private int roleplayTurn;
     private List<String> playedPronunciationWords = new ArrayList<>();
+    private RoleplayScenario currentRoleplayScenario;  // Store current roleplay scenario
 
     public UserMode getMode() {
         return mode;
@@ -77,6 +78,14 @@ public class UserSessionState {
         if (!playedPronunciationWords.contains(normalized)) {
             playedPronunciationWords.add(normalized);
         }
+    }
+
+    public RoleplayScenario getCurrentRoleplayScenario() {
+        return currentRoleplayScenario;
+    }
+
+    public void setCurrentRoleplayScenario(RoleplayScenario currentRoleplayScenario) {
+        this.currentRoleplayScenario = currentRoleplayScenario;
     }
 
     public void clearQuiz() {

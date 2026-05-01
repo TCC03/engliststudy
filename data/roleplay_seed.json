@@ -34,6 +34,221 @@
           "sample_ai_reply": "Perfect. Your meal will be ready soon. Thank you!"
         }
       ]
+    },
+    {
+      "id": 2,
+      "title": "Shopping at a Store",
+      "level": "A2",
+      "context_zh": "使用者在商店購物，練習詢問價格、尺寸和顏色。",
+      "target_vocabulary": [
+        "clothes",
+        "size",
+        "color",
+        "price",
+        "try"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Greet and ask what the customer is looking for.",
+          "sample_ai_reply": "Hello! Can I help you find something today?"
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Suggest a color or size.",
+          "sample_ai_reply": "We have this shirt in blue, red, and black. What size do you need?"
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Ask if they want to try it on.",
+          "sample_ai_reply": "Would you like to try it on? The fitting room is over there."
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Offer to process the purchase.",
+          "sample_ai_reply": "Great! Shall I ring this up for you?"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Booking a Hotel",
+      "level": "B1",
+      "context_zh": "使用者詢問旅館房間，練習預訂日期、房型和特殊需求。",
+      "target_vocabulary": [
+        "hotel",
+        "room",
+        "night",
+        "reservation",
+        "available"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Welcome the guest and ask about their booking.",
+          "sample_ai_reply": "Good afternoon. Welcome to our hotel. How can I help you with your reservation?"
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Ask about dates and room preferences.",
+          "sample_ai_reply": "Which dates will you be staying? And would you prefer a single or double room?"
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Confirm availability and rate.",
+          "sample_ai_reply": "We have a lovely double room available for those dates at £120 per night. Is that suitable?"
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Ask about special requests.",
+          "sample_ai_reply": "Do you have any special requests, such as a high floor or late breakfast?"
+        },
+        {
+          "turn": 5,
+          "ai_prompt": "Finalize the booking.",
+          "sample_ai_reply": "Perfect! I'll confirm your reservation. You'll receive a confirmation email shortly."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Asking Directions",
+      "level": "A2",
+      "context_zh": "使用者在街上詢問方向，練習理解和給予位置指引。",
+      "target_vocabulary": [
+        "direction",
+        "street",
+        "left",
+        "right",
+        "thank you"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Respond to someone asking for directions.",
+          "sample_ai_reply": "Hi! Where would you like to go?"
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Give the first instruction.",
+          "sample_ai_reply": "Go straight ahead for two blocks."
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Give the next turn instruction.",
+          "sample_ai_reply": "Then turn right at the traffic light."
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Describe the final destination.",
+          "sample_ai_reply": "You'll see a big bank building on your left. The place is right next to it."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "At the Airport",
+      "level": "B1",
+      "context_zh": "使用者在機場進行值機，練習護照、行李和登機手續相關用語。",
+      "target_vocabulary": [
+        "airport",
+        "passport",
+        "luggage",
+        "boarding",
+        "flight"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Greet the passenger at check-in.",
+          "sample_ai_reply": "Good morning! May I see your passport and ticket, please?"
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Ask about luggage.",
+          "sample_ai_reply": "Do you have any luggage to check in today?"
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Confirm luggage and seat assignment.",
+          "sample_ai_reply": "Two bags, that's fine. Your seat is 12A, window seat. Have you packed your luggage yourself?"
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Provide boarding information.",
+          "sample_ai_reply": "Boarding will start at gate 5 at 10:45. Have a wonderful flight!"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Doctor's Appointment",
+      "level": "B1",
+      "context_zh": "使用者在診所預約看病，練習描述症狀和預約時間。",
+      "target_vocabulary": [
+        "doctor",
+        "appointment",
+        "symptom",
+        "pain",
+        "medicine"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Answer the phone as a medical receptionist.",
+          "sample_ai_reply": "Hello, Johnson's Medical Clinic. How can I help you?"
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Ask what the problem is.",
+          "sample_ai_reply": "What seems to be the problem? Are you a new patient?"
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Suggest available appointment times.",
+          "sample_ai_reply": "The doctor can see you tomorrow at 2 PM or Thursday at 10 AM. Which is better for you?"
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Confirm the appointment.",
+          "sample_ai_reply": "Great! I've scheduled you for tomorrow at 2 PM. Please arrive 10 minutes early with your insurance card."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Office Meeting",
+      "level": "B1",
+      "context_zh": "同事之間進行工作會議討論，練習表達意見和徵求反饋。",
+      "target_vocabulary": [
+        "meeting",
+        "project",
+        "deadline",
+        "team",
+        "implement"
+      ],
+      "turns": [
+        {
+          "turn": 1,
+          "ai_prompt": "Start the meeting and set the agenda.",
+          "sample_ai_reply": "Let's discuss the new project timeline. Everyone, please share your thoughts on the proposed deadline of June 30th."
+        },
+        {
+          "turn": 2,
+          "ai_prompt": "Ask a colleague for their input.",
+          "sample_ai_reply": "Sarah, from your perspective as the project lead, do you think the team can meet this deadline?"
+        },
+        {
+          "turn": 3,
+          "ai_prompt": "Address a concern.",
+          "sample_ai_reply": "That's a good point. We'll need to allocate more resources to the QA team then."
+        },
+        {
+          "turn": 4,
+          "ai_prompt": "Summarize and conclude.",
+          "sample_ai_reply": "Alright, let's move forward with the June 30th deadline and increase the QA budget by 20%. Next meeting next Friday. Thank you all!"
+        }
+      ]
     }
   ]
 }

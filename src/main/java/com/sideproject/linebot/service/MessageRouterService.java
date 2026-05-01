@@ -282,18 +282,43 @@ public class MessageRouterService {
     }
 
     private String startRoleplay(UserSessionState state) {
-        RoleplayScenario scenario = roleplayService.getDefaultScenario();
+        // 嘗試使用 AI 生成新的對話場景
+        List<String> targetVocabForAi = vocabularyService.getRandomVocabularyForDialogue(5);
+        
+        RoleplayScenario aiScenario = null;
+        if (!targetVocabForAi.isEmpty()) {
+            // 隨機選擇語言難度和主題
+            String[] levels = {"A1", "A2", "B1"};
+            String[] topics = {"restaurant", "shopping", "hotel", "airport", "office", "hospital"};
+            String level = levels[new java.util.Random().nextInt(levels.length)];
+            String topic = topics[new java.util.Random().nextInt(topics.length)];
+            
+            aiScenario = roleplayService.generateAiScenario(targetVocabForAi, level, topic);
+        }
+
+        // 如果 AI 生成失敗或無詞彙，使用預設或隨機場景
+        RoleplayScenario scenario = aiScenario != null ? aiScenario : roleplayService.getRandomScenario();
+        
         if (scenario == null || scenario.turns().isEmpty()) {
             return "目前沒有對話練習資料，請先準備 data/roleplay_seed.json";
         }
+        
         state.setMode(UserMode.ROLEPLAY_MODE);
         state.setRoleplayTurn(0);
+        state.setCurrentRoleplayScenario(scenario);  // Store scenario in session for multi-turn handling
+        
         return "已進入對話練習：" + scenario.title() + "\n" + scenario.contextZh() + "\n"
                 + scenario.turns().get(0).sampleAiReply();
     }
 
     private String handleRoleplayTurn(UserSessionState state) {
-        RoleplayScenario scenario = roleplayService.getDefaultScenario();
+        RoleplayScenario scenario = state.getCurrentRoleplayScenario();
+        
+        // Fallback to default scenario if not stored in session
+        if (scenario == null) {
+            scenario = roleplayService.getDefaultScenario();
+        }
+        
         if (scenario == null || scenario.turns().isEmpty()) {
             state.setMode(UserMode.NORMAL);
             return "對話練習資料讀取失敗，已回到一般模式。";
@@ -303,6 +328,7 @@ public class MessageRouterService {
         if (nextTurn >= scenario.turns().size()) {
             state.setMode(UserMode.NORMAL);
             state.setRoleplayTurn(0);
+            state.setCurrentRoleplayScenario(null);
             return "本次對話練習完成！\n分數: 80\n常見錯誤: 時態、主詞動詞一致\n建議主題: 日常口說";
         }
 
