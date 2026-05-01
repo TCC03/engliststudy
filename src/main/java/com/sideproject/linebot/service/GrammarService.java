@@ -18,11 +18,13 @@ public class GrammarService {
 
     private final AppRuntimeProperties properties;
     private final ObjectMapper objectMapper;
+    private final AiService aiService;
     private final Random random = new Random();
 
-    public GrammarService(AppRuntimeProperties properties, ObjectMapper objectMapper) {
+    public GrammarService(AppRuntimeProperties properties, ObjectMapper objectMapper, AiService aiService) {
         this.properties = properties;
         this.objectMapper = objectMapper;
+        this.aiService = aiService;
     }
 
     /**
@@ -30,6 +32,11 @@ public class GrammarService {
      * @return 文法單元及教學內容
      */
     public GrammarUnit startRandomGrammarLesson() {
+        GrammarUnit aiUnit = aiService.generateGrammarUnit();
+        if (aiUnit != null) {
+            return aiUnit;
+        }
+
         List<GrammarUnit> units = loadUnits();
         if (units.isEmpty()) {
             return null;

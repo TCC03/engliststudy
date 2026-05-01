@@ -16,12 +16,19 @@ import java.util.List;
 public class QuizService {
 
     private final AppRuntimeProperties properties;
+    private final AiService aiService;
 
-    public QuizService(AppRuntimeProperties properties) {
+    public QuizService(AppRuntimeProperties properties, AiService aiService) {
         this.properties = properties;
+        this.aiService = aiService;
     }
 
     public List<QuizQuestion> createQuizSet() {
+        List<QuizQuestion> aiQuestions = aiService.generateQuizQuestions(properties.getSession().getMaxQuizQuestions());
+        if (!aiQuestions.isEmpty()) {
+            return aiQuestions;
+        }
+
         List<QuizQuestion> all = loadQuizItems();
         if (all.isEmpty()) {
             return List.of();

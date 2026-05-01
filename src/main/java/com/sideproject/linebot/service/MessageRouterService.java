@@ -225,7 +225,7 @@ public class MessageRouterService {
     private void startQuizWithFlex(UserSessionState state, String replyToken, LineMessagingService messagingService) {
         List<QuizQuestion> quizSet = quizService.createQuizSet();
         if (quizSet.isEmpty()) {
-            messagingService.replyText(replyToken, "目前沒有測驗題庫，請先準備 data/quiz_seed.csv");
+            messagingService.replyText(replyToken, "目前無法生成測驗題目，請稍後再試或檢查 AI 設定");
             return;
         }
         state.setMode(UserMode.QUIZ_MODE);
@@ -352,7 +352,7 @@ public class MessageRouterService {
     private void startGrammarLesson(UserSessionState state, String replyToken, LineMessagingService messagingService) {
         GrammarUnit unit = grammarService.startRandomGrammarLesson();
         if (unit == null) {
-            messagingService.replyText(replyToken, "目前沒有文法資料，請先準備 data/grammar_seed.json");
+            messagingService.replyText(replyToken, "目前無法生成文法練習，請稍後再試或檢查 AI 設定");
             return;
         }
 

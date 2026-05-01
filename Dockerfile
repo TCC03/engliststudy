@@ -12,6 +12,7 @@ WORKDIR /app
 ENV PORT=10000
 
 COPY --from=build /app/target/linebot-english-learning-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/data /app/data
 
 EXPOSE 10000
 
