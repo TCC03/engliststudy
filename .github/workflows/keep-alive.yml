@@ -2,12 +2,27 @@ name: Keep Render Alive
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # 每 10 分鐘執行一次
+    - cron: '*/5 * * * *'  # 每 5 分鐘執行一次，降低免費層休眠機率
   workflow_dispatch:  # 允許手動觸發
 
 jobs:
   ping:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RENDER_BASE_URL: ${{ vars.RENDER_BASE_URL || 'https://linebot-english-learning.onrender.com' }}
     steps:
-      - name: Ping Render Service
-        run: curl -f https://linebot-english-learning.onrender.com/api/line/health || exit 1
+      - name: Print Target URL
+        run: echo "Target=${RENDER_BASE_URL}"
+
+      - name: Ping Health Endpoint With Retry
+        run: |
+          curl --fail --show-error --silent \
+            --retry 3 --retry-delay 5 --max-time 20 \
+            "${RENDER_BASE_URL}/api/line/health"
+
+      - name: Ping Root Endpoint With Retry
+        run: |
+          curl --show-error --silent \
+            --retry 3 --retry-delay 5 --max-time 20 \
+            "${RENDER_BASE_URL}/"
