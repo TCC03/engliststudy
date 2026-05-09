@@ -13,7 +13,7 @@ services:
       - key: GEMINI_MODEL
         value: gemini-2.5-flash
       - key: VOCABULARY_SYNC_ON_STARTUP
-        value: true
+        value: false
       - key: SESSION_TTL_SECONDS
         value: 3600
       - key: LINE_SIGNATURE_VALIDATION_ENABLED

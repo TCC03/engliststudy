@@ -26,6 +26,7 @@ public class VocabularyService {
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate = new RestTemplate();
     private final Random random = new Random();
+    private volatile List<VocabularyItem> cachedVocabularyItems = List.of();
 
     public VocabularyService(AppRuntimeProperties appRuntimeProperties, ObjectMapper objectMapper) {
         this.appRuntimeProperties = appRuntimeProperties;
@@ -35,19 +36,22 @@ public class VocabularyService {
     @PostConstruct
     public void syncApiVocabularyToLocalFileOnStartup() {
         if (!appRuntimeProperties.getData().isVocabularySyncOnStartup()) {
+            refreshVocabularyCache();
             return;
         }
 
         List<VocabularyItem> apiVocabulary = fetchVocabularyItemsFromApi();
         if (apiVocabulary.isEmpty()) {
+            refreshVocabularyCache();
             return;
         }
 
         writeVocabularyItemsToFile(apiVocabulary);
+        cachedVocabularyItems = List.copyOf(apiVocabulary);
     }
 
     public String getDailyVocabularyReply() {
-        List<VocabularyItem> vocabularyItems = loadVocabularyItemsFromFile();
+        List<VocabularyItem> vocabularyItems = getVocabularyItems();
         if (vocabularyItems.isEmpty()) {
             return "目前沒有本地單字資料，請檢查 data/vocabulary_seed.csv";
         }
@@ -68,7 +72,7 @@ public class VocabularyService {
      * @return 隨機選中的詞彙列表
      */
     public List<String> getRandomVocabularyForDialogue(int count) {
-        List<VocabularyItem> vocabularyItems = loadVocabularyItemsFromFile();
+        List<VocabularyItem> vocabularyItems = getVocabularyItems();
         if (vocabularyItems.isEmpty()) {
             return List.of();
         }
@@ -87,7 +91,7 @@ public class VocabularyService {
     }
 
     public Map<String, Object> getDailyVocabularyFlex() {
-        List<VocabularyItem> vocabularyItems = loadVocabularyItemsFromFile();
+        List<VocabularyItem> vocabularyItems = getVocabularyItems();
         if (vocabularyItems.isEmpty()) {
             return null;
         }
@@ -333,9 +337,23 @@ public class VocabularyService {
                 )));
             }
             Files.write(path, lines, StandardCharsets.UTF_8);
+            cachedVocabularyItems = List.copyOf(vocabularyItems);
         } catch (IOException ignored) {
             // Keep existing local file if sync fails.
         }
+    }
+
+    private void refreshVocabularyCache() {
+        cachedVocabularyItems = List.copyOf(loadVocabularyItemsFromFile());
+    }
+
+    private List<VocabularyItem> getVocabularyItems() {
+        if (!cachedVocabularyItems.isEmpty()) {
+            return cachedVocabularyItems;
+        }
+
+        refreshVocabularyCache();
+        return cachedVocabularyItems;
     }
 
     private String toCsvLine(List<String> columns) {

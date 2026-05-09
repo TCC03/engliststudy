@@ -6,6 +6,7 @@ import com.sideproject.linebot.config.AppRuntimeProperties;
 import com.sideproject.linebot.model.GrammarUnit;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -20,11 +21,17 @@ public class GrammarService {
     private final ObjectMapper objectMapper;
     private final AiService aiService;
     private final Random random = new Random();
+    private volatile List<GrammarUnit> cachedUnits = List.of();
 
     public GrammarService(AppRuntimeProperties properties, ObjectMapper objectMapper, AiService aiService) {
         this.properties = properties;
         this.objectMapper = objectMapper;
         this.aiService = aiService;
+    }
+
+    @PostConstruct
+    public void preloadGrammarCache() {
+        cachedUnits = List.copyOf(loadUnits());
     }
 
     /**
@@ -37,7 +44,7 @@ public class GrammarService {
             return aiUnit;
         }
 
-        List<GrammarUnit> units = loadUnits();
+        List<GrammarUnit> units = getUnits();
         if (units.isEmpty()) {
             return null;
         }
@@ -157,7 +164,7 @@ public class GrammarService {
     }
 
     public String getRandomGrammarReply() {
-        List<GrammarUnit> units = loadUnits();
+        List<GrammarUnit> units = getUnits();
         if (units.isEmpty()) {
             return "目前沒有文法資料，請先準備 data/grammar_seed.json";
         }
@@ -224,5 +231,14 @@ public class GrammarService {
         } catch (IOException ignored) {
             return List.of();
         }
+    }
+
+    private List<GrammarUnit> getUnits() {
+        if (!cachedUnits.isEmpty()) {
+            return cachedUnits;
+        }
+
+        cachedUnits = List.copyOf(loadUnits());
+        return cachedUnits;
     }
 }

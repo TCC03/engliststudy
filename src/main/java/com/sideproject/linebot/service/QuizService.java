@@ -4,6 +4,7 @@ import com.sideproject.linebot.config.AppRuntimeProperties;
 import com.sideproject.linebot.model.QuizQuestion;
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,10 +18,16 @@ public class QuizService {
 
     private final AppRuntimeProperties properties;
     private final AiService aiService;
+    private volatile List<QuizQuestion> cachedQuizItems = List.of();
 
     public QuizService(AppRuntimeProperties properties, AiService aiService) {
         this.properties = properties;
         this.aiService = aiService;
+    }
+
+    @PostConstruct
+    public void preloadQuizCache() {
+        cachedQuizItems = List.copyOf(loadQuizItems());
     }
 
     public List<QuizQuestion> createQuizSet() {
@@ -29,7 +36,7 @@ public class QuizService {
             return aiQuestions;
         }
 
-        List<QuizQuestion> all = loadQuizItems();
+        List<QuizQuestion> all = getQuizItems();
         if (all.isEmpty()) {
             return List.of();
         }
@@ -68,5 +75,14 @@ public class QuizService {
             return List.of();
         }
         return list;
+    }
+
+    private List<QuizQuestion> getQuizItems() {
+        if (!cachedQuizItems.isEmpty()) {
+            return cachedQuizItems;
+        }
+
+        cachedQuizItems = List.copyOf(loadQuizItems());
+        return cachedQuizItems;
     }
 }

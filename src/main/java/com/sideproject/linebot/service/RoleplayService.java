@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sideproject.linebot.config.AppRuntimeProperties;
 import com.sideproject.linebot.model.RoleplayScenario;
+import jakarta.annotation.PostConstruct;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -27,19 +28,25 @@ public class RoleplayService {
     private final ObjectMapper objectMapper;
     private final RestTemplate restTemplate = new RestTemplate();
     private final Random random = new Random();
+    private volatile List<RoleplayScenario> cachedScenarios = List.of();
 
     public RoleplayService(AppRuntimeProperties properties, ObjectMapper objectMapper) {
         this.properties = properties;
         this.objectMapper = objectMapper;
     }
 
+    @PostConstruct
+    public void preloadRoleplayCache() {
+        cachedScenarios = List.copyOf(loadScenarios());
+    }
+
     public RoleplayScenario getDefaultScenario() {
-        List<RoleplayScenario> scenarios = loadScenarios();
+        List<RoleplayScenario> scenarios = getScenarios();
         return scenarios.isEmpty() ? null : scenarios.get(0);
     }
 
     public RoleplayScenario getRandomScenario() {
-        List<RoleplayScenario> scenarios = loadScenarios();
+        List<RoleplayScenario> scenarios = getScenarios();
         if (scenarios.isEmpty()) {
             return null;
         }
@@ -180,5 +187,14 @@ public class RoleplayService {
         } catch (IOException ignored) {
             return List.of();
         }
+    }
+
+    private List<RoleplayScenario> getScenarios() {
+        if (!cachedScenarios.isEmpty()) {
+            return cachedScenarios;
+        }
+
+        cachedScenarios = List.copyOf(loadScenarios());
+        return cachedScenarios;
     }
 }
